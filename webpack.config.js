@@ -21,6 +21,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
         },
         compress: true,
+        historyApiFallback: true,
         hot: true,
         open: true,
         port: 8080
@@ -32,6 +33,22 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['babel-loader'],
             },
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf)$/,
+                type: 'asset/inline',
+            },
+            {
+                test: /\.svg$/,
+                use: ['svg-inline-loader'],
+            },
+            {
+                test: /\.(scss|css)$/,
+                use: ['style-loader', 'css-loader'],
+            }
         ]
     }
 }

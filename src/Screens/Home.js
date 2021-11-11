@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import {Navbar} from "../Common/Navbar";
 import {Welcome} from "./Welcome";
@@ -24,11 +24,18 @@ const ContentWrapper = styled.div`
 
 
 export const Home = () => {
+    const [wasWelcome, setWasWelcome] = useState(false)
+    const [name, setName] = useState('')
+
     return(
         <Container>
             <Navbar/>
             <ContentWrapper>
-                <Game/>
+                {
+                    wasWelcome ?
+                        <Game name={name} /> :
+                        <Welcome setWasWelcome={setWasWelcome} name={name} setName={setName} />
+                }
             </ContentWrapper>
         </Container>
     )

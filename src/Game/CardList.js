@@ -21,15 +21,14 @@ const CardListWrapper = styled.section`
   grid-row-gap: 10px;
 `;
 
-
-export const CardList = ({iconsArr}) => {
+export const CardList = ({iconsArr, setGameState}) => {
     const [game, setGame] = useState([])
     const [flippedCount, setFlippedCount] = useState(0)
     const [flippedIndexes, setFlippedIndexes] = useState([])
 
     useEffect(() => {
         const newGame = []
-        for (let i = 0; i < 18; i++) {
+        for (let i = 0; i < 4; i++) {
             const firstCard = {
                 id: 2 * i,
                 imgId: i,
@@ -52,7 +51,13 @@ export const CardList = ({iconsArr}) => {
     }, [])
 
     useEffect(() => {
-        // Loads when the game variable changes
+        const finished = !game.some(card => !card.flipped)
+
+        if (finished && game.length > 0) {
+            setTimeout(() => {
+                setGameState('finished')
+            }, 500)
+        }
     }, [game])
 
     if (flippedIndexes.length === 2) {

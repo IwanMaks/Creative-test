@@ -1,15 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {InfoBlock} from "../Game/InfoBlock";
 import {ProgressBar} from "../Common/ProgressBar";
 import {CardList} from "../Game/CardList";
+import {useDispatch, useSelector} from "react-redux";
+import {loadImg} from "../store/actions/images";
+import {loadUsers} from "../store/actions/users";
+import {RatingTable} from "./RatingTable";
 
 const GameContainer = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10% 1% 89%;
+  grid-template-rows: 10% 90%;
 `;
 
 const FillerContainer = styled.div`
@@ -37,29 +41,31 @@ const FinishText = styled.p`
   color: #CCD4F0;
 `;
 
-export const Game = () => {
-    const [gameState, setGameState] = useState('not started');
+export const Game = ({name}) => {
+    const dispatch = useDispatch()
+    const [gameState, setGameState] = useState('started');
 
-    const importAll = (r) => {
-        return r.keys().map(r);
-    }
 
-    const icons = importAll(require.context('../assets/icons/', false, /\.(png|jpe?g|svg)$/));
+    useEffect(() => {
+        dispatch(loadImg())
+        dispatch(loadUsers())
+    }, [])
+
+    const imgs = useSelector(state => state.images.imgs)
+
+    if (imgs.length === 0) return <div>Loading....</div>
 
     return(
         <GameContainer>
-            <InfoBlock/>
-            <ProgressBar/>
+            <InfoBlock gameState={gameState} name={name}/>
             { gameState==='started' ?
-                <CardList iconsArr={icons}/> :
-                gameState==='finished' ?
+                <>
+                    {/*<ProgressBar/>*/}
+                    <CardList iconsArr={imgs} setGameState={setGameState}/>
+                </> :
+                gameState==='finished' &&
                     <FillerContainer>
-                        <FinishText>Красава</FinishText>
-                    </FillerContainer> :
-                    <FillerContainer>
-                        <StartButton onClick={() => setGameState('started')}>
-                            Начать
-                        </StartButton>
+                        <RatingTable />
                     </FillerContainer>
             }
         </GameContainer>

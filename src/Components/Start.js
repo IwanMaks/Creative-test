@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {loadFilm} from "../store/actions/user";
+import {loadFilm} from "../store/actions/users";
 
 export const Start = props => {
     const dispatch = useDispatch()

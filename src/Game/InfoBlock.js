@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
 
 const InfoBlockContainer = styled.div`
   width: 100%;
@@ -35,18 +36,67 @@ const TimerText = styled.p`
   color: #CCD4F0;
 `;
 
+const setUserScore = (name, time) => {
+    const users = JSON.parse(localStorage.getItem('users-score'))
+    const newScore = {
+        [name]: time
+    }
 
-export const InfoBlock = () => {
+    if (users !== null) {
+        if (users.hasOwnProperty(name)) {
+            if (users[name] > time) {
+                localStorage.setItem('users-score', JSON.stringify({...users, ...newScore}))
+            }
+        } else {
+            const concatUsers = {
+                ...users,
+                ...newScore
+            }
+            localStorage.setItem('users-score', JSON.stringify(concatUsers))
+        }
+    } else {
+        localStorage.setItem('users-score', JSON.stringify(newScore))
+    }
+}
+
+
+export const InfoBlock = ({gameState, name}) => {
+    const [time, setTime] = useState(0)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        let interval = null;
+
+        if (gameState === 'started') {
+            interval = setInterval(() => {
+                setTime(prevTime => prevTime + 1000)
+            }, 1000)
+        } else {
+            setUserScore(name, time)
+            clearInterval(interval)
+        }
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [gameState])
+
+    const addZero = (n) => n < 10 ? '0' + n : n
+
+    const parseTime = (timeCount) => {
+        return addZero(Math.floor((timeCount / 60000) % 60)) + ':' + addZero(Math.floor((timeCount / 1000) % 60))
+    }
+
     return(
        <InfoBlockContainer>
             <ContentBlock>
                 <UserNameText>
-                    Гусь Бородатый
+                    {name}
                 </UserNameText>
             </ContentBlock>
            <ContentBlock>
                <TimerText>
-                   00:45
+                   {parseTime(time)}
                </TimerText>
            </ContentBlock>
        </InfoBlockContainer>

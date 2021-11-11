@@ -16,9 +16,9 @@ const CardContainer = styled.section`
 `;
 
 const CardImg = styled.img`
-  width: 56px;
-  height: 56px;
-  background-size: contain;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 `;
 
 const CardBack = styled.div`

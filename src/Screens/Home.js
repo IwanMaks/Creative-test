@@ -18,12 +18,13 @@ const ContentWrapper = styled.div`
   width: 100%;
   flex-grow: 1;
   padding: 0 20px;
-  
+
   background-color: #393E4D;
+  overflow: hidden;
 `;
 
 
-export const Home = () => {
+export const Home = ({screen}) => {
     const [wasWelcome, setWasWelcome] = useState(false)
     const [name, setName] = useState('')
 
@@ -32,9 +33,11 @@ export const Home = () => {
             <Navbar/>
             <ContentWrapper>
                 {
-                    wasWelcome ?
-                        <Game name={name} /> :
-                        <Welcome setWasWelcome={setWasWelcome} name={name} setName={setName} />
+                    screen === 'Game' ?
+                        wasWelcome ?
+                            <Game name={name} /> :
+                            <Welcome setWasWelcome={setWasWelcome} name={name} setName={setName} /> :
+                        <RatingTable/>
                 }
             </ContentWrapper>
         </Container>

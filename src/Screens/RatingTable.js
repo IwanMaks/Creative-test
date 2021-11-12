@@ -49,6 +49,23 @@ const TableWrapper = styled.section`
   }
 `;
 
+const ZeroText = styled.p`
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: #CCD4F0;
+  margin-bottom: 10px;
+`;
+
+const FillerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 
 export const RatingTable = () => {
     const dispatch = useDispatch()
@@ -61,7 +78,7 @@ export const RatingTable = () => {
     const users = useSelector(state => state.users.score)
 
     if (!users) {
-        return <div>Loading...</div>
+        return <FillerContainer><ZeroText>Пока нет результатов :(</ZeroText></FillerContainer>
     } else {
         keysSorted = Object.keys(users).sort(function(a,b){return users[a]-users[b]})
     }

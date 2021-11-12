@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
+import {parseTime} from "../secondary/helper";
 
 const InfoBlockContainer = styled.div`
   width: 100%;
@@ -62,7 +62,6 @@ const setUserScore = (name, time) => {
 
 export const InfoBlock = ({gameState, name}) => {
     const [time, setTime] = useState(0)
-    const dispatch = useDispatch()
 
     useEffect(() => {
         let interval = null;
@@ -80,12 +79,6 @@ export const InfoBlock = ({gameState, name}) => {
             clearInterval(interval)
         }
     }, [gameState])
-
-    const addZero = (n) => n < 10 ? '0' + n : n
-
-    const parseTime = (timeCount) => {
-        return addZero(Math.floor((timeCount / 60000) % 60)) + ':' + addZero(Math.floor((timeCount / 1000) % 60))
-    }
 
     return(
        <InfoBlockContainer>

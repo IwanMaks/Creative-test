@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Card} from "./Card";
+import {Loading} from "../Common/Loading";
 
 const CardListContainer = styled.div`
   height: 100%;
@@ -79,7 +80,7 @@ export const CardList = ({iconsArr, setGameState}) => {
         }
     }
 
-    if (game.length === 0) return <div>loading...</div> // Найти лоадинг
+    if (game.length === 0) return <Loading />
 
     return(
         <CardListContainer>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const LinkContainer = styled.section`
   padding: 0 20px;
@@ -11,7 +12,7 @@ const LinkContainer = styled.section`
   align-items: center;
 `;
 
-const Link = styled.a`
+const AppLink = styled.span`
   font-family: Roboto, sans-serif;
   font-weight: 800;
   font-size: 18px;
@@ -26,10 +27,13 @@ const Link = styled.a`
   
 `;
 
-export const Navlink = ({text, link}) => {
+export const NavLink = ({text}) => {
     return(
         <LinkContainer>
-            <Link href={link}>{text}</Link>
+            <Link to={text.toLowerCase() === 'рейтинг' ? '/rating' : '/game'} style={{textDecoration: 'none'}}>
+                <AppLink>{text}</AppLink>
+            </Link>
+
         </LinkContainer>
     )
 }

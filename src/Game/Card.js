@@ -23,7 +23,7 @@ const CardImg = styled.img`
 
 const CardBack = styled.div`
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1 / 1;
   background-image: url(${texture});
   background-repeat: no-repeat;
   background-size: cover;

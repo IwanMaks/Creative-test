@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Logo } from "./Logo";
-import { Navlink } from "./NavLink";
+import { NavLink } from "./NavLink";
 
 const NavbarContainer = styled.section`
   width: 100%;
@@ -30,13 +30,11 @@ export const Navbar = () => {
         <NavbarContainer>
             <Logo/>
             <NavLinksContainer>
-                <Navlink
+                <NavLink
                     text={'ИГРАТЬ'}
-                    link={'#'}
                 />
-                <Navlink
+                <NavLink
                     text={'РЕЙТИНГ'}
-                    link={'#'}
                 />
             </NavLinksContainer>
         </NavbarContainer>

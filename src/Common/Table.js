@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {TableCell} from "./TableCell";
+import {parseTime} from "../secondary/helper";
 
 const TableContainer = styled.section`
   width: 100%;
@@ -29,7 +30,7 @@ export const Table = ({users, usersKeySorted}) => {
                         <TableRow>
                             <TableCell text={index+1}/>
                             <TableCell text={element}/>
-                            <TableCell text={users[element]}/>
+                            <TableCell text={parseTime(users[element])}/>
                         </TableRow>
                     )
                 })

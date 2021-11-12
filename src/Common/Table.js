@@ -27,11 +27,12 @@ export const Table = ({users, usersKeySorted}) => {
             {
                 usersKeySorted.map((element, index) => {
                     return(
-                        <TableRow>
+                        <TableRow key={index + 100}>
                             <TableCell text={index+1}/>
                             <TableCell text={element}/>
                             <TableCell text={parseTime(users[element])}/>
                         </TableRow>
+
                     )
                 })
             }

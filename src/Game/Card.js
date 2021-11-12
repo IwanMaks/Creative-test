@@ -15,6 +15,10 @@ const CardContainer = styled.section`
   align-items: center;
 `;
 
+const EmptyCardContainer = styled(CardContainer)`
+  background-color: #393E4D;
+`
+
 const CardImg = styled.img`
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -68,10 +72,12 @@ export const Card = ({img, initialCardState, flippedCount, game, flippedIndexes,
 
     return(
         <CardContainer onClick={onCardClick}>
-            { cardState ?
-                <CardImg src={img.img}/> :
-                <CardBack/>
+            {img.flipped ? <EmptyCardContainer/> :
+                 cardState ?
+                        <CardImg src={img.img}/> :
+                        <CardBack/>
             }
         </CardContainer>
+
     )
 }

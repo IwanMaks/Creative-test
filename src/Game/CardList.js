@@ -27,6 +27,8 @@ export const CardList = ({iconsArr, setGameState}) => {
     const [flippedCount, setFlippedCount] = useState(0)
     const [flippedIndexes, setFlippedIndexes] = useState([])
 
+    console.log('flipped count' ,flippedCount)
+
     useEffect(() => {
         const newGame = []
         for (let i = 0; i < 18; i++) {
@@ -87,15 +89,18 @@ export const CardList = ({iconsArr, setGameState}) => {
             <CardListWrapper>
                 {
                     game.map((img, index) => (
-                        <Card
-                            id={index}
-                            game={game}
-                            img={img}
-                            initialCardState={0}
-                            flippedCount={flippedCount}
-                            setFlippedCount={setFlippedCount}
-                            flippedIndexes={flippedIndexes}
-                            setFlippedIndexes={setFlippedIndexes}/>
+                        <div key={index}>
+                            <Card
+                                id={index}
+                                game={game}
+                                img={img}
+                                initialCardState={0}
+                                flippedCount={flippedCount}
+                                setFlippedCount={setFlippedCount}
+                                flippedIndexes={flippedIndexes}
+                                setFlippedIndexes={setFlippedIndexes}/>
+                        </div>
+
                     ))
                 }
             </CardListWrapper>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Card} from "./Card";
-import {Loading} from "../Common/Loading";
+import {Loading} from "../Components/Loading";
 
 const CardListContainer = styled.div`
   height: 100%;
@@ -31,7 +31,7 @@ export const CardList = ({iconsArr, setGameState}) => {
 
     useEffect(() => {
         const newGame = []
-        for (let i = 0; i < 18; i++) {
+        for (let i = 0; i < 4; i++) {
             const firstCard = {
                 id: 2 * i,
                 imgId: i,
@@ -89,7 +89,6 @@ export const CardList = ({iconsArr, setGameState}) => {
             <CardListWrapper>
                 {
                     game.map((img, index) => (
-                        <div key={index}>
                             <Card
                                 id={index}
                                 game={game}
@@ -98,8 +97,8 @@ export const CardList = ({iconsArr, setGameState}) => {
                                 flippedCount={flippedCount}
                                 setFlippedCount={setFlippedCount}
                                 flippedIndexes={flippedIndexes}
-                                setFlippedIndexes={setFlippedIndexes}/>
-                        </div>
+                                setFlippedIndexes={setFlippedIndexes}
+                                key={index}/>
 
                     ))
                 }

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import styled from "styled-components";
-import {Table} from "../Common/Table";
+import {Table} from "../Components/Table";
 import {useDispatch, useSelector} from "react-redux";
 import {loadUsers} from "../store/actions/users";
 

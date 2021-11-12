@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {Navbar} from "../Common/Navbar";
+import {Navbar} from "../Components/Navbar";
 import {Welcome} from "./Welcome";
 import {Game} from "./Game";
 import {RatingTable} from "./RatingTable";
@@ -18,13 +18,11 @@ const ContentWrapper = styled.div`
   width: 100%;
   flex-grow: 1;
   padding: 0 20px;
-
   background-color: #393E4D;
   overflow: hidden;
 `;
 
-
-export const Home = ({screen}) => {
+export const Base = ({screen}) => {
     const [wasWelcome, setWasWelcome] = useState(false)
     const [name, setName] = useState('')
 
@@ -35,7 +33,7 @@ export const Home = ({screen}) => {
                 {
                     screen === 'Game' ?
                         wasWelcome ?
-                            <Game name={name} /> :
+                            <Game name={name} setWasWelcome={setWasWelcome} /> :
                             <Welcome setWasWelcome={setWasWelcome} name={name} setName={setName} /> :
                         <RatingTable/>
                 }

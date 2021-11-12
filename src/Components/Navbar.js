@@ -6,12 +6,13 @@ import { NavLink } from "./NavLink";
 
 const NavbarContainer = styled.section`
   width: 100%;
+  min-height: 64px;
   height: 64px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
+
   background-color: #272A35;
 `;
 

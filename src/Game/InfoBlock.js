@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {parseTime} from "../secondary/helper";
+import {parseTime} from "../SecondaryFunctions/helper";
 
 const InfoBlockContainer = styled.div`
   width: 100%;

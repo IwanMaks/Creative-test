@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, memo, useMemo} from "react";
 import styled from "styled-components";
 
 import texture from '../assets/cardTexture.jpg';
@@ -21,13 +21,14 @@ const EmptyCardContainer = styled(CardContainer)`
 
 const CardImg = styled.img`
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1 ;
   object-fit: cover;
 `;
 
 const CardBack = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;
+  
   background-image: url(${texture});
   background-repeat: no-repeat;
   background-size: cover;

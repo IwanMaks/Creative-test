@@ -4,7 +4,7 @@ import {InfoBlock} from "../Game/InfoBlock";
 import {CardList} from "../Game/CardList";
 import {useDispatch, useSelector} from "react-redux";
 import {loadImg} from "../store/actions/images";
-import {Loading} from "../Common/Loading";
+import {Loading} from "../Components/Loading";
 
 const GameContainer = styled.div`
   width: 100%;
@@ -50,7 +50,7 @@ const FinishText = styled.p`
   margin-bottom: 10px;
 `;
 
-export const Game = ({name}) => {
+export const Game = ({name, setWasWelcome}) => {
     const dispatch = useDispatch()
     const [gameState, setGameState] = useState('started');
 
@@ -71,7 +71,9 @@ export const Game = ({name}) => {
                 gameState === 'finished' &&
                 <FillerContainer>
                     <FinishText>Попробовать еще раз?</FinishText>
-                    <Button onClick={() => setGameState('started')}>Рестарт</Button>
+                    <Button onClick={() => {
+                        setWasWelcome(false)
+                    }}>Рестарт</Button>
                 </FillerContainer>
             }
         </GameContainer>

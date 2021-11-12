@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {TableCell} from "./TableCell";
-import {parseTime} from "../secondary/helper";
+import {parseTime} from "../SecondaryFunctions/helper";
 
 const TableContainer = styled.section`
   width: 100%;

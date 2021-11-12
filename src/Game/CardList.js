@@ -31,7 +31,7 @@ export const CardList = ({iconsArr, setGameState}) => {
 
     useEffect(() => {
         const newGame = []
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 18; i++) {
             const firstCard = {
                 id: 2 * i,
                 imgId: i,

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {parseTime} from "../SecondaryFunctions/helper";
+import {useSelector} from "react-redux";
 
 const InfoBlockContainer = styled.div`
   width: 100%;
@@ -36,10 +37,10 @@ const TimerText = styled.p`
   color: #CCD4F0;
 `;
 
-const setUserScore = (name, time) => {
+const setUserScore = (name, time, step) => {
     const users = JSON.parse(localStorage.getItem('users-score'))
     const newScore = {
-        [name]: time
+        [name]: [time, step]
     }
 
     if (users !== null) {
@@ -60,8 +61,10 @@ const setUserScore = (name, time) => {
 }
 
 
-export const InfoBlock = ({gameState, name}) => {
+export const InfoBlock = ({gameState}) => {
     const [time, setTime] = useState(0)
+    const name = useSelector(state => state.users.currentUser.name)
+    const step = useSelector(state => state.users.currentUser.stepCount)
 
     useEffect(() => {
         let interval = null;
@@ -71,7 +74,7 @@ export const InfoBlock = ({gameState, name}) => {
                 setTime(prevTime => prevTime + 1000)
             }, 1000)
         } else {
-            setUserScore(name, time)
+            setUserScore(name, time, step)
             clearInterval(interval)
         }
 

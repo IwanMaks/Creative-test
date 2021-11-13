@@ -13,6 +13,11 @@ const CellContainer = styled.section`
   align-items: center;
 `;
 
+const CellContainerHeader = styled(CellContainer)`
+  background-color: #393E4D;
+  border: 1px solid #272A35;
+`
+
 const CellText = styled.p`
   font-family: Roboto, sans-serif;
   font-weight: 300;
@@ -21,10 +26,15 @@ const CellText = styled.p`
   color: #CCD4F0;
 `;
 
-export const TableCell = ({text}) => {
+export const TableCell = ({text, header = false}) => {
     return (
-        <CellContainer>
-            <CellText>{text}</CellText>
-        </CellContainer>
+        header ?
+            <CellContainerHeader>
+                <CellText>{text}</CellText>
+            </CellContainerHeader>
+            :
+            <CellContainer>
+                <CellText>{text}</CellText>
+            </CellContainer>
     )
 }

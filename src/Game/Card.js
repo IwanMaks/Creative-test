@@ -2,6 +2,8 @@ import React, {useEffect, useState, memo, useMemo} from "react";
 import styled from "styled-components";
 
 import texture from '../assets/cardTexture.jpg';
+import {useDispatch, useSelector} from "react-redux";
+import {setUserStep} from "../store/actions/users";
 
 const CardContainer = styled.section`
   width: 100%;
@@ -37,6 +39,7 @@ const CardBack = styled.div`
 
 export const Card = ({img, initialCardState, flippedCount, game, flippedIndexes, setFlippedIndexes, setFlippedCount, id}) => {
     const [cardState, setCardState] = useState(initialCardState);
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (flippedIndexes[2] === true && flippedIndexes.indexOf(id) > -1) {
@@ -53,6 +56,9 @@ export const Card = ({img, initialCardState, flippedCount, game, flippedIndexes,
 
     const onCardClick = () => {
         if (!game[id].flipped && flippedCount % 3 === 0) {
+            if (!cardState) {
+                dispatch(setUserStep())
+            }
             setCardState(prevState => !prevState)
             setFlippedCount(flippedCount + 1)
             const newIndexes = [...flippedIndexes]
@@ -63,6 +69,9 @@ export const Card = ({img, initialCardState, flippedCount, game, flippedIndexes,
             !game[id].flipped &&
             flippedIndexes.indexOf(id) < 0
         ) {
+            if (!cardState) {
+                dispatch(setUserStep())
+            }
             setCardState(prevState => !prevState)
             setFlippedCount(flippedCount + 1)
             const newIndexes = [...flippedIndexes]

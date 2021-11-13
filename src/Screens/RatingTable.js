@@ -80,7 +80,12 @@ export const RatingTable = () => {
     if (!users) {
         return <FillerContainer><ZeroText>Пока нет результатов :(</ZeroText></FillerContainer>
     } else {
-        keysSorted = Object.keys(users).sort(function(a,b){return users[a]-users[b]})
+        keysSorted = Object.keys(users).sort(function(a,b) {
+            if (users[a][0] === users[b][0]) {
+                return users[a][1]-users[b][1]
+            }
+            return users[a][0]-users[b][0]
+        })
     }
 
     return(

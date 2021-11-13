@@ -33,7 +33,7 @@ export const Base = ({screen}) => {
                 {
                     screen === 'Game' ?
                         wasWelcome ?
-                            <Game name={name} setWasWelcome={setWasWelcome} /> :
+                            <Game setWasWelcome={setWasWelcome} /> :
                             <Welcome setWasWelcome={setWasWelcome} name={name} setName={setName} /> :
                         <RatingTable/>
                 }

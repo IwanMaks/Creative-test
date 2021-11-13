@@ -16,7 +16,7 @@ const TableRow = styled.section`
   height: 40px;
   margin: 5px 0;
   display: grid;
-  grid-template-columns: 5% 73% 20%;
+  grid-template-columns: 5% 52% 20% 20%;
   grid-template-rows: 100%;
   grid-column-gap: 1%;
 `;
@@ -24,13 +24,20 @@ const TableRow = styled.section`
 export const Table = ({users, usersKeySorted}) => {
     return(
         <TableContainer>
+            <TableRow>
+                <TableCell text='№' header/>
+                <TableCell text='Имя' header/>
+                <TableCell text='Время' header/>
+                <TableCell text='Шаги' header/>
+            </TableRow>
             {
                 usersKeySorted.map((element, index) => {
                     return(
                         <TableRow key={index + 100}>
                             <TableCell text={index+1}/>
                             <TableCell text={element}/>
-                            <TableCell text={parseTime(users[element])}/>
+                            <TableCell text={parseTime(users[element][0])}/>
+                            <TableCell text={users[element][1]}/>
                         </TableRow>
 
                     )

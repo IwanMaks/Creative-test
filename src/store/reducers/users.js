@@ -1,7 +1,11 @@
-import {LOAD_USER} from "../types";
+import {LOAD_USER, SET_USER_NAME, SET_USER_STEP} from "../types";
 
 const initialState = {
-    score: {}
+    score: {},
+    currentUser: {
+        name: '',
+        stepCount: 0
+    }
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -10,6 +14,22 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 score: action.payload
+            }
+        case SET_USER_NAME:
+            return {
+                ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    name: action.payload
+                }
+            }
+        case SET_USER_STEP:
+            return {
+                ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    stepCount: action.payload
+                }
             }
         default:
             return state

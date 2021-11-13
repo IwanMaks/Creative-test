@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setCurrentUserName} from "../store/actions/users";
 
 const WelcomeContainer = styled.div`
   width: 100%;
@@ -95,7 +97,10 @@ const StartButton = styled.button`
 `;
 
 export const Welcome = ({setWasWelcome, name, setName}) => {
+    const dispatch = useDispatch()
+
     const handleInput = (event) => {
+        dispatch(setCurrentUserName(event.target.value))
         setName(event.target.value)
     }
 

@@ -5,6 +5,7 @@ import {CardList} from "../Game/CardList";
 import {useDispatch, useSelector} from "react-redux";
 import {loadImg} from "../store/actions/images";
 import {Loading} from "../Components/Loading";
+import {setUserStep} from "../store/actions/users";
 
 const GameContainer = styled.div`
   width: 100%;
@@ -50,7 +51,7 @@ const FinishText = styled.p`
   margin-bottom: 10px;
 `;
 
-export const Game = ({name, setWasWelcome}) => {
+export const Game = ({setWasWelcome}) => {
     const dispatch = useDispatch()
     const [gameState, setGameState] = useState('started');
 
@@ -65,7 +66,7 @@ export const Game = ({name, setWasWelcome}) => {
 
     return (
         <GameContainer>
-            <InfoBlock gameState={gameState} name={name}/>
+            <InfoBlock gameState={gameState}/>
             {gameState === 'started' ?
                 <CardList iconsArr={imgs} setGameState={setGameState}/> :
                 gameState === 'finished' &&
@@ -73,6 +74,7 @@ export const Game = ({name, setWasWelcome}) => {
                     <FinishText>Попробовать еще раз?</FinishText>
                     <Button onClick={() => {
                         setWasWelcome(false)
+                        dispatch(setUserStep(0))
                     }}>Рестарт</Button>
                 </FillerContainer>
             }
